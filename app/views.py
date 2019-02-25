@@ -12,6 +12,17 @@ from app.forms import UploadForm
 
 
 
+
+
+def get_uploaded_files():
+    rootdir = os.getcwd()
+    print (rootdir)
+    lst = []
+    for subdirs, dirs, files in os.walk(rootdir + '/app/static/uploads'):
+        lst=[file for file in files]
+    return lst
+        
+            
 ###
 # Routing for your application.
 ###
@@ -43,6 +54,10 @@ def upload():
     elif request.method == 'GET':
         return render_template('upload.html',form=form)
 
+@app.route('/files')
+def files():
+    # print(get_uploaded_files())
+    return render_template('files.html',images=get_uploaded_files())
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():

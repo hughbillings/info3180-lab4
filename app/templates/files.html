@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{%block main%}
+<ul class="list-group">
+{% for image in images %}
+    <li class = "list-group-item d-inline-flex flex-sm-wrap flex-fill"> <img src="{{url_for('static',filename='uploads/'+image)}}"></img>
+    </li>
+{%endfor%}   
+</ul>
+{%endblock%}
